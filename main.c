@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
-
-// funcție pentru a curăța ecranul (opțional, oferă un aspect de "aplicație")
+#include <stdlib.h>
+// functie pentru a curata ecranul 
 void curata_ecran() {
     #ifdef _WIN32
         system("cls");
