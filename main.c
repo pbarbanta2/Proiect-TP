@@ -1,24 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
-// functie pentru a curata ecranul 
-void curata_ecran() {
-    #ifdef _WIN32
-        system("cls");
-    #else
-        printf("\e[1;1H\e[2J");
-    #endif
-}
-
-void afiseaza_tabla(char celule[]) {
-    printf("\n");
-    printf(" %c | %c | %c \n", celule[0], celule[1], celule[2]);
-    printf("---+---+---\n");
-    printf(" %c | %c | %c \n", celule[3], celule[4], celule[5]);
-    printf("---+---+---\n");
-    printf(" %c | %c | %c \n", celule[6], celule[7], celule[8]);
-    printf("\n");
-}
+#include "joc.h"
 
 int main() {
     // initializam tabla cu cifrele 1-9 pentru a ghida jucatorul
@@ -46,6 +29,38 @@ int main() {
     printf("Instructiuni: Introdu cifra corespunzatoare pozitiei.\n");
 
     afiseaza_tabla(tabla);
+    int runda, pozitie;
+    char simbol_curent;
 
+    for (runda = 0; runda < 9; runda++) 
+    {
+        // Stabilim cine mută: Jucătorul 1 în rundele pare, Jucătorul 2 în cele impare
+        simbol_curent = (runda % 2 == 0) ? jucator1 : jucator2;
+        
+        int succes = 0;
+        while (!succes) {
+            printf("Randul simbolului %c. Alege pozitia: ", simbol_curent);
+            if (scanf("%d", &pozitie) != 1) {
+                while(getchar() != '\n'); // curatam buffer-ul în caz de input greșit (litere)
+                continue;
+            }
+
+            succes = marcheaza_casuta(tabla, pozitie, simbol_curent);
+            
+            if (!succes) {
+                printf("Pozitie invalida sau ocupata! Incearca din nou.\n");
+            }
+        }
+
+        curata_ecran();
+        printf("Ultima mutare: %c la pozitia %d\n", simbol_curent, pozitie);
+        afiseaza_tabla(tabla);
+
+        if (verifica_castig(tabla)) {
+            printf("FELICITARI! Jucatorul cu simbolul %c a castigat!\n", simbol_curent);
+            return 0; // Oprim programul aici
+    }
+    
+    }
     return 0;
 }
