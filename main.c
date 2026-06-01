@@ -57,9 +57,11 @@ int main() {
         afiseaza_tabla(tabla);
 
         if (verifica_castig(tabla)) {
-            printf("FELICITARI! Jucatorul cu simbolul %c a castigat!\n", simbol_curent);
+            printf(CULOARE_VERDE "FELICITARI! Jucatorul cu simbolul %c a castigat!\n" CULOARE_RESET, simbol_curent);
             return 0; // Oprim programul aici
-    }
+        }else if (runda == 8) {
+            printf(CULOARE_ROSU "JOC TERMINAT! Este o remiza!\n" CULOARE_RESET);
+        }
     
     }
     return 0;
