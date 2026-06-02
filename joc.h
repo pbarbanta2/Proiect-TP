@@ -14,5 +14,6 @@ void curata_ecran();
 void afiseaza_tabla(char celule[]);
 int marcheaza_casuta(char celule[], int pozitie, char simbol);
 int verifica_castig(char celule[]);
+int mutare_calculator(char celule[]);
 
 #endif

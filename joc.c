@@ -58,3 +58,18 @@ int verifica_castig(char celule[]) {
     }
     return 0; 
 }
+
+int mutare_calculator(char celule[]) {
+    int pozitie;
+    int mutare_valida = 0;
+
+    while (!mutare_valida) {
+       
+        pozitie = (rand() % 9) + 1;
+        if (celule[pozitie - 1] != 'X' && celule[pozitie - 1] != '0') {
+            mutare_valida = 1;
+        }
+    }
+
+    return pozitie;
+}
