@@ -1,0 +1,8 @@
+TARGET = x0.exe
+
+all:
+	gcc main.c joc.c -o $(TARGET)
+
+
+clean:
+	del $(TARGET)
