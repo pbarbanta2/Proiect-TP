@@ -21,4 +21,4 @@ Un joc clasic de X și 0 dezvoltat în limbajul C, rulat direct în terminal. Pr
 ### Compilare
 Pentru a compila toate fișierele automat, deschide terminalul în folderul proiectului și rulează:
 ```bash
-mingw32-make
+mingw32-make -f Makefile
